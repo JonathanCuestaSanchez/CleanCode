@@ -2,6 +2,8 @@ package com.prueba.modelo;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.redis.core.RedisHash;
+@RedisHash("Apuesta")
 public class Apuesta {
 	
 	private int cliente;
@@ -54,6 +56,14 @@ public class Apuesta {
 	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Apuesta [cliente=" + cliente + ", cantidad=" + cantidad + ", numeroApostado=" + numeroApostado
+				+ ", fecha=" + fecha + "]";
+	}
+	
 	
 	
 	

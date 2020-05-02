@@ -1,16 +1,18 @@
 package com.prueba.modelo;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.redis.core.RedisHash;
+@RedisHash("Juego")
 public class Juego {
 	
 	private int id;
 	private long ruleta;
 	private LocalDateTime  fechaInicio;
 	private LocalDateTime   fechaFin;
-	private HashMap<Integer,List<Apuesta>> apuestas ;
+	private List<Apuesta> apuestas ;
 	private int numeroGanador;
 	
 	
@@ -20,7 +22,7 @@ public class Juego {
 		this.ruleta = ruleta;
 		fechaInicio= LocalDateTime.now();
 		fechaFin= null;
-		apuestas=new HashMap<>();		
+		apuestas=new ArrayList<>();		
 	}
 
 
@@ -64,16 +66,6 @@ public class Juego {
 	}
 
 
-	public HashMap<Integer, List<Apuesta>> getApuestas() {
-		return apuestas;
-	}
-
-
-	public void setApuestas(HashMap<Integer, List<Apuesta>> apuestas) {
-		this.apuestas = apuestas;
-	}
-
-
 	public int getNumeroGanador() {
 		return numeroGanador;
 	}
@@ -84,12 +76,21 @@ public class Juego {
 	}
 
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Juego [id=" + id + ", ruleta=" + ruleta + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", apuestas=" + apuestas + ", numeroGanador=" + numeroGanador + "]";
+	}
+
+
+	public List<Apuesta> getApuestas() {
+		return apuestas;
+	}
+
+
+	public void setApuestas(List<Apuesta> apuestas) {
+		this.apuestas = apuestas;
+	}
 	
 	
 	

@@ -1,8 +1,6 @@
 package com.prueba.servicios.impl;
 
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.prueba.modelo.Apuesta;
@@ -20,19 +18,24 @@ public class JuegoServicioImpl implements JuegoServicio {
 	}
 
 	@Override
-	public Resultado pagarApuesta(Juego juego) {
+	public Resultado pagarApuesta(Juego juego) {		
 		Resultado resultadoJuego = new Resultado(juego.getRuleta(),juego.getId(),juego.getFechaInicio(),juego.getFechaFin(),juego.getApuestas(),juego.getNumeroGanador());
-		resultadoJuego.getApuestas().keySet();		
-		for (int cliente : juego.getApuestas().keySet()) {			
-			List<Apuesta> apuestaCliente = resultadoJuego.getApuestas().get(cliente);
-			System.out.println(apuestaCliente.toString());
-			long gananciaCliente = 0;
-			for (Apuesta apuesta : apuestaCliente) {
-				if(apuesta.getNumeroApostado()==resultadoJuego.getNumeroGanador()) {
-					gananciaCliente+=apuesta.getCantidad()*36;
+			
+		for (Apuesta apuesta : juego.getApuestas()) {
+			long ganancia = 0;
+			if(resultadoJuego.getResultadosClientes().containsKey(apuesta.getCliente())) {
+				if(apuesta.getNumeroApostado()==resultadoJuego.getNumeroGanador()) {					
+					ganancia = resultadoJuego.getResultadosClientes().get(apuesta.getCliente());
+					ganancia+= apuesta.getCantidad()*36;
+					resultadoJuego.getResultadosClientes().replace(apuesta.getCliente(), ganancia);
 				}
+			}else {				
+				if(apuesta.getNumeroApostado()==resultadoJuego.getNumeroGanador()) {
+					ganancia=apuesta.getCantidad()*36;
+				}
+				resultadoJuego.getResultadosClientes().put(apuesta.getCliente(), ganancia);
 			}
-			resultadoJuego.getResultadosClientes().put(cliente, gananciaCliente);			
+					
 		}
 		return resultadoJuego;
 	}

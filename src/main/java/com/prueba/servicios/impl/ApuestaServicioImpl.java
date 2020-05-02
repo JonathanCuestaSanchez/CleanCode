@@ -1,8 +1,6 @@
 package com.prueba.servicios.impl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import com.prueba.modelo.Ruleta;
 import com.prueba.repositorio.RuletaRepository;
 import com.prueba.servicios.ApuestaServicio;
 import com.prueba.servicios.JuegoServicio;
+import com.prueba.servicios.ServicioException;
 
 @Service
 public class ApuestaServicioImpl implements ApuestaServicio {
@@ -24,23 +23,21 @@ public class ApuestaServicioImpl implements ApuestaServicio {
 	JuegoServicio juegoService;
 
 	@Override
-	public String abrirApuestas(String id) {
+	public void abrirApuestas(String id) throws ServicioException {
 		Ruleta ruleta;	
 		ruleta = ruletaRepository.findById(id).get();		
 		if(!ruleta.getEstado()) {		
 			ruleta.setEstado(true);
 			ruleta.getJuegos().add(new Juego(ruleta.getJuegos().size(),ruleta.getId()));
-			ruletaRepository.save(ruleta);
-			return "Se han abierto las apuestas para esta ruleta";
+			ruletaRepository.save(ruleta);			
 		}else {
-			return "Las apuestas de esta ruleta ya se encontraban abieras";
-			
+			throw new ServicioException("La ruleta "+id+" ya se encuentra abierta");			
 		}
 		
 	}
 
 	@Override
-	public Resultado cerrarApuestas(String id) {
+	public Resultado cerrarApuestas(String id) throws ServicioException {
 		Ruleta ruleta = ruletaRepository.findById(id).get();
 		if(ruleta.getEstado()) {	
 			ruleta.setEstado(false);
@@ -49,25 +46,20 @@ public class ApuestaServicioImpl implements ApuestaServicio {
 			ruletaRepository.save(ruleta);
 			return (juegoService.pagarApuesta(ruleta.getJuegos().get(ruleta.getJuegos().size()-1)));			
 		}else {			
-			return null;
+			throw new ServicioException("La ruleta "+id+" ya se encuentra cerrada");
 		}
 		
 	}
 
 	@Override
-	public void creacionApuesta(String id, Apuesta apuesta) {
+	public void creacionApuesta(String id, Apuesta apuesta) throws ServicioException {
 		Ruleta ruleta = ruletaRepository.findById(id).get();
 		if(ruleta.getEstado()) {
-			HashMap<Integer,List<Apuesta>> apuestas = ruleta.getJuegos().get(ruleta.getJuegos().size()-1).getApuestas();			
-			if(apuestas.containsKey(apuesta.getCliente())) {
-				apuestas.get(apuesta.getCliente()).add(apuesta);				
-				
-			}else {
-				List<Apuesta> apuestasCliente = new ArrayList<>();
-				apuestasCliente.add(apuesta);
-				apuestas.put(apuesta.getCliente(), apuestasCliente);
-			}	
+			List<Apuesta> apuestas = ruleta.getJuegos().get(ruleta.getJuegos().size()-1).getApuestas();	
+			apuestas.add(apuesta);	
 			ruletaRepository.save(ruleta);
+		}else {
+			throw new ServicioException("La ruleta "+id+" ya se encuentra cerrada para apuestas");
 		}
 	}
 

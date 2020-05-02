@@ -5,8 +5,8 @@ import com.prueba.modelo.Resultado;
 
 public interface ApuestaServicio {
 	
-	String abrirApuestas(String id);
-	Resultado cerrarApuestas(String id);
-	void creacionApuesta(String id,Apuesta apuesta);
+	void abrirApuestas(String id) throws ServicioException;
+	Resultado cerrarApuestas(String id) throws ServicioException;
+	void creacionApuesta(String id,Apuesta apuesta) throws ServicioException;
 
 }

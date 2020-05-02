@@ -14,13 +14,14 @@ public class RuletaServicioImpl implements RuletaServicio {
 	RuletaRepository ruletaRepository;
 	
 	@Override
-	public long creacionRuleta() {		
+	public long creacionRuleta() {			
 		Ruleta ruleta = new Ruleta(ruletaRepository.count()+1);
-		ruletaRepository.save(ruleta);		
+		ruletaRepository.save(ruleta);				
 		return ruleta.getId();
 	}
+	
 	@Override
-	public HashMap<Long,String> consultarRuletas() {	
+	public HashMap<Long,String> consultarRuletas()  {	
 		HashMap<Long,String> estados = new HashMap<>();
 		Iterable<Ruleta> ruletas = (Iterable<Ruleta>) ruletaRepository.findAll();
 		for (Ruleta ruleta : ruletas) {
@@ -30,8 +31,7 @@ public class RuletaServicioImpl implements RuletaServicio {
 				estados.put(ruleta.getId(), "Cerrada");
 			}	        
 	    }
-		return estados;
-		
+		return estados;		
 	}
 
 }

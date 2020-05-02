@@ -10,12 +10,12 @@ public class Resultado {
 	private int numeroJuegoMesa;
 	private LocalDateTime  fechaInicio;
 	private LocalDateTime  fechaFin;
-	private HashMap<Integer,List<Apuesta>> apuestas ;
+	private List<Apuesta> apuestas ;
 	private int numeroGanador;
 	private HashMap<Integer,Long> resultadosClientes;
 	
 	public Resultado(long ruleta, int numeroJuegoMesa, LocalDateTime fechaInicio, LocalDateTime fechaFin,
-			HashMap<Integer,List<Apuesta>> apuestas, int numeroGanador) {
+			List<Apuesta> apuestas, int numeroGanador) {
 		super();
 		this.ruleta = ruleta;
 		this.numeroJuegoMesa = numeroJuegoMesa;
@@ -58,14 +58,6 @@ public class Resultado {
 		this.fechaFin = fechaFin;
 	}
 
-	public HashMap<Integer, List<Apuesta>> getApuestas() {
-		return apuestas;
-	}
-
-	public void setApuestas(HashMap<Integer, List<Apuesta>> apuestas) {
-		this.apuestas = apuestas;
-	}
-
 	public int getNumeroGanador() {
 		return numeroGanador;
 	}
@@ -81,6 +73,16 @@ public class Resultado {
 	public void setResultadosClientes(HashMap<Integer, Long> resultadosClientes) {
 		this.resultadosClientes = resultadosClientes;
 	}
+
+	public List<Apuesta> getApuestas() {
+		return apuestas;
+	}
+
+	public void setApuestas(List<Apuesta> apuestas) {
+		this.apuestas = apuestas;
+	}
+	
+	
 	
 	
 	
