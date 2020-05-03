@@ -20,4 +20,4 @@ proyecto desarrollando los conceptos de CleanCod
 ### Deploy Diagrams
 
 #### Scalable AWS version
-![](img/Deployment Diagram0.PNG)
+![](img/Deployment Diagram0.png)
