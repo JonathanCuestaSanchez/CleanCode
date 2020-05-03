@@ -4,6 +4,7 @@ Proyecto desarrollando los conceptos de CleanCod
 [http://ec2-18-230-75-201.sa-east-1.compute.amazonaws.com:8080/]
 ### Enpoinds
 Herramienta sugeriada para prueba postman
+"{id}" hace referencia a el numero de la ruleta ej: "10"
 * Creación de nuevas ruletas y devuelva el id de la nueva ruleta creada: Metodo Post - url: http://ec2-18-230-75-201.sa-east-1.compute.amazonaws.com:8080/ruletas
 * Abrir apuestas dado un id de ruleta: Metodo Patch - url: http://ec2-18-230-75-201.sa-east-1.compute.amazonaws.com:8080/apuestas/{id}/abrir
 * Cierre de apuestas dado un id de ruleta: Metodo Patch - url: http://ec2-18-230-75-201.sa-east-1.compute.amazonaws.com:8080/apuestas/{id}/cerrar
