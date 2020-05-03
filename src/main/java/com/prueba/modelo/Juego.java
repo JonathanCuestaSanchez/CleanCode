@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.redis.core.RedisHash;
+
+
+/**
+ * @author jonathan cuesta 
+ * clase que representa un juego de ruleta
+ */
 @RedisHash("Juego")
 public class Juego {
 	

@@ -12,17 +12,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prueba.servicios.RuletaServicio;
 
+/**
+ * @author jonathan cuesta
+ * controlador de peticiones http para las ruletas
+ *
+ */
 @RestController
 @RequestMapping("/ruletas")
 public class RuletaControlador {
 	@Autowired
 	RuletaServicio ruletaService;
 
+	/**
+	 * Metodo para crear una ruleta
+	 * 
+	 * @return long que identifica a la ruleta creada
+	 */
 	@PostMapping("")
 	public ResponseEntity<Long> crearRuleta() {
 		return new ResponseEntity<>(ruletaService.creacionRuleta(), HttpStatus.CREATED);
 	}
 
+	/**
+	 * Metodo para consultar el id y el estado de las ruletas
+	 * 
+	 * @return HashMap donde la llave es el id de la ruleta y el valor es el estado
+	 *         de esta
+	 */
 	@GetMapping("")
 	public ResponseEntity<HashMap<Long, String>> consultarRuletas() {
 		HashMap<Long, String> estados = ruletaService.consultarRuletas();

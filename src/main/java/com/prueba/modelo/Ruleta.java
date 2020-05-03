@@ -7,7 +7,10 @@ import org.springframework.data.redis.core.RedisHash;
 
 
 
-
+/**
+ * @author jonathan cuesta 
+ * clase que representa una ruleta
+ */
 @RedisHash("Ruleta")
 public class Ruleta  {
 	

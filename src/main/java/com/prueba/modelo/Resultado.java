@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * @author jonathan cuesta 
+ * clase que representa el resultado de un juego de ruleta
+ */
 public class Resultado {	
 	
 	private long ruleta;
