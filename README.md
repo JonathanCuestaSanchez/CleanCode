@@ -1,5 +1,5 @@
 # CleanCode
-proyecto desarrollando los conceptos de CleanCod
+Proyecto desarrollando los conceptos de CleanCod
 ## Aplicacion desplegada en AWS en maquina EC2
 [http://ec2-18-230-75-201.sa-east-1.compute.amazonaws.com:8080/]
 ### Enpoinds
