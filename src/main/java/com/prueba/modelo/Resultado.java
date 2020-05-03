@@ -3,6 +3,7 @@ package com.prueba.modelo;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Resultado {	
 	
@@ -66,7 +67,7 @@ public class Resultado {
 		this.numeroGanador = numeroGanador;
 	}
 
-	public HashMap<Integer, Long> getResultadosClientes() {
+	public Map<Integer, Long> getResultadosClientes() {
 		return resultadosClientes;
 	}
 

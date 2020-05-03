@@ -31,7 +31,7 @@ public class JuegoServicioImpl implements JuegoServicio {
 				}
 			}else {				
 				if(apuesta.getNumeroApostado()==resultadoJuego.getNumeroGanador()) {
-					ganancia=apuesta.getCantidad()*36;
+					ganancia=apuesta.getCantidad()* (long)36;
 				}
 				resultadoJuego.getResultadosClientes().put(apuesta.getCliente(), ganancia);
 			}

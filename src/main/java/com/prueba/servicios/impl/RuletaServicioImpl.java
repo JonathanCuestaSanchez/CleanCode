@@ -23,7 +23,7 @@ public class RuletaServicioImpl implements RuletaServicio {
 	@Override
 	public HashMap<Long,String> consultarRuletas()  {	
 		HashMap<Long,String> estados = new HashMap<>();
-		Iterable<Ruleta> ruletas = (Iterable<Ruleta>) ruletaRepository.findAll();
+		Iterable<Ruleta> ruletas = ruletaRepository.findAll();
 		for (Ruleta ruleta : ruletas) {
 			if(ruleta.getEstado()) {
 				estados.put(ruleta.getId(), "Abierta");
